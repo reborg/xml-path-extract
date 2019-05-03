@@ -6,8 +6,8 @@ Small util that prints all the reachable paths of the tags element inside an XML
 
 For example:
 
-lein run <xml>
+`lein run <xml>`
 
 Or:
 
-lein uberjar; java -jar target/xpe.jar <xml>
+`lein uberjar; java -jar target/xpe.jar <xml>`
