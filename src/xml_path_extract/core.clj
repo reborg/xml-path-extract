@@ -27,7 +27,10 @@
       (print-msg-and-exit "Dry run. Bye."))
     (if (empty-args? args)
       (print-msg-and-exit (str "Missing input file: 'xpe <file>'" banner))
-      (let [paths (-> (first args) slurp .getBytes io/input-stream xml/parse paths)]
+      (let [paths (->> (first args) slurp .getBytes io/input-stream xml/parse paths
+                       (map #(apply str (interpose "/" (map name %))))
+                       set
+                       sort)]
         (println
           (with-out-str
-            (clojure.pprint/write {:file (first args) :paths paths})))))))
+            (clojure.pprint/write paths)))))))
